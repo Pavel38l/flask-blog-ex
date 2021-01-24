@@ -1,7 +1,7 @@
 {% extends 'bootstrap/base.html' %}
 
 {% block title %}
-    {% if title %}{{ title }} - Microblog{% else %}{{ _('Welcome to Microblog') }}{% endif %}
+    {% if title %}{{ title }} - Microblog{% else %}{{ ('Welcome to Microblog') }}{% endif %}
 {% endblock %}
 
 {% block navbar %}
@@ -23,6 +23,9 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url_for('login') }}">Login</a></li>
                 </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url_for('upload_form') }}">Upload</a></li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -30,18 +33,6 @@
 
 {% block content %}
     <div class="container">
-        {% if current_user.is_authenticated %}
-        {% with tasks = current_user.get_tasks_in_progress() %}
-        {% if tasks %}
-            {% for task in tasks %}
-            <div class="alert alert-success" role="alert">
-                {{ task.description }}
-                <span id="{{ task.id }}-progress">{{ task.get_progress() }}</span>%
-            </div>
-            {% endfor %}
-        {% endif %}
-        {% endwith %}
-        {% endif %}
         {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}
@@ -51,6 +42,7 @@
         {% endwith %}
 
         {# application content needs to be provided in the app_content block #}
-        {% block app_content %}{% endblock %}
+        {% block app_content %}
+        {% endblock %}
     </div>
 {% endblock %}

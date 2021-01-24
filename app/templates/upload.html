@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block app_content %}
+    <h1>Image upload</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data" novalidate>
+        <dl>
+            <p>
+                <input type="file" name="file" autocomplete="off" required>
+            </p>
+        </dl>
+        <p>
+            <input type="submit" value="Submit">
+        </p>
+    </form>
+    {% if filename %}
+        <div>
+            <img src="{{ url_for('display_image', filename=filename) }}">
+        </div>
+    {% endif %}
+{% endblock %}
