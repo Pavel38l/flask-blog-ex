@@ -50,9 +50,10 @@ def upload_image():
         flash('No image selected for uploading')
         return redirect(request.url)
     if file and allowed_file(file.filename):
+        print("try save image")
         filename = f"{generator.next()}.{get_extension(file.filename)}"#secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOADED_IMAGES_DEST'], filename))
-        # print('upload_image filename: ' + filename)
+        print('upload_image filename: ' + filename)
         flash('Image successfully uploaded and displayed')
         transform(filename)
         return render_template('upload.html', filename=filename)
