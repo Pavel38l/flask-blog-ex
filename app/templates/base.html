@@ -46,3 +46,21 @@
         {% endblock %}
     </div>
 {% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script>
+        function transform(destElem, filename) {
+        $(destElem).html('<img src="{{ url_for('static', filename='loading.gif') }}"><br/><img src="{{ url_for('display_image', filename=filename) }}">');
+            $.post('/process', {
+                filename: filename
+            }).done(function(response) {
+                var oFilename = response['filename'];
+                var src = 'output/' + oFilename;
+                $(destElem).html('<img src=' + src + '>');
+            }).fail(function() {
+                $(destElem).text("{{ ('Error: Could not contact server.') }}");
+            });
+        }
+    </script>
+{% endblock %}

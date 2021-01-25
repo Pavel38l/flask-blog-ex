@@ -13,8 +13,20 @@
         </p>
     </form>
     {% if filename %}
-        <div>
-            <img src="{{ url_for('display_image', filename=filename) }}">
+        <div id="div1">
+
         </div>
+        {% block scripts %}
+            {{ super() }}
+            <script>
+            if ('{{ filename }}' != '') {
+                transform(
+                      '#div1',
+                       '{{ filename }}'
+                );
+            }
+
+         </script>
+        {% endblock %}
     {% endif %}
 {% endblock %}
