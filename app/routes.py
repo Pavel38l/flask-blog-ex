@@ -82,14 +82,14 @@ def process():
     return json
 
 
-def clear(filename):
-    print("remove files")
-    path = os.path.join(app.config['UPLOADED_IMAGES_DEST'], filename)
-    outpath = os.path.join(app.config['OUTPUT_IMAGES_DEST'], get_output_filename(filename))
-    if os.path.exists(path):
-        os.remove(path)
-    if os.path.exists(outpath):
-        os.remove(outpath)
+# def clear(filename):
+#     print("remove files")
+#     path = os.path.join(app.config['UPLOADED_IMAGES_DEST'], filename)
+#     outpath = os.path.join(app.config['OUTPUT_IMAGES_DEST'], get_output_filename(filename))
+#     if os.path.exists(path):
+#         os.remove(path)
+#     if os.path.exists(outpath):
+#         os.remove(outpath)
 
 
 def transform(filename):
