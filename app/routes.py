@@ -78,7 +78,7 @@ def output_image(filename):
 @app.route('/process', methods=['POST'])
 def process():
     json = jsonify({'filename': transform(request.form['filename'])})
-    clear(request.form['filename'])
+    #clear(request.form['filename'])
     return json
 
 
